@@ -13,6 +13,9 @@ external interface VideoPlayerProps : Props {
 
 val VideoPlayer = FC<VideoPlayerProps> { props ->
     div {
+        css {
+            position = Position.relative
+        }
         h3 {
             +"${props.video.speaker}: ${props.video.title}"
         }

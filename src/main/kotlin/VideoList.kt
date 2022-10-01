@@ -1,6 +1,4 @@
-import kotlinx.browser.window
 import react.*
-import react.dom.*
 import react.dom.html.ReactHTML.p
 
 external interface VideoListProps : Props {

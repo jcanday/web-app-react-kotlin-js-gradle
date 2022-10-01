@@ -1,13 +1,5 @@
 import kotlinx.browser.document
 import react.*
-import emotion.react.css
-import csstype.Position
-import csstype.px
-import react.dom.html.ReactHTML.h1
-import react.dom.html.ReactHTML.h3
-import react.dom.html.ReactHTML.div
-import react.dom.html.ReactHTML.p
-import react.dom.html.ReactHTML.img
 import react.dom.client.createRoot
 import kotlinx.serialization.Serializable
 
