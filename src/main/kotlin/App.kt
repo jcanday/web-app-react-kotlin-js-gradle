@@ -46,59 +46,65 @@ val App = FC<Props> {
         }
     }
 
-    h1 {
-        +"Hello, React+Kotlin/JS!"
-    }
+    Header()
     div {
-        h3 {
-            +"Videos to watch"
-        }
-        VideoList {
-            videos = unwatchedVideos
-            selectedVideo = currentVideo
-            onSelectVideo = { video ->
-                currentVideo = video
-            }
-        }
-        h3 {
-            +"Videos watched"
-        }
-        VideoList {
-            videos = watchedVideos
-            selectedVideo = currentVideo
-            onSelectVideo = { video ->
-                currentVideo = video
-            }
-        }
-    }
-    div{
-        css {
-            position = Position.absolute
-            top = 10.px
-            right = 10.px
+        css{
             display = Display.flex
-            alignItems = AlignItems.end
-            gap = 16.px
+            flexDirection = FlexDirection.row
+            justifyContent = JustifyContent.spaceBetween
         }
-        AudioPlayer{
-            audio = currentAudio
-        }
-        currentVideo?.let { curr ->
-            VideoPlayer {
-                video = curr
-                unwatchedVideo = curr in unwatchedVideos
-                onWatchedButtonPressed = {
-                    if (video in unwatchedVideos) {
-                        unwatchedVideos = unwatchedVideos - video
-                        watchedVideos = watchedVideos + video
-                    } else {
-                        watchedVideos = watchedVideos - video
-                        unwatchedVideos = unwatchedVideos + video
-                    }
+        div {
+            h3 {
+                +"Videos to watch"
+            }
+            VideoList {
+                videos = unwatchedVideos
+                selectedVideo = currentVideo
+                onSelectVideo = { video ->
+                    currentVideo = video
+                }
+            }
+            h3 {
+                +"Videos watched"
+            }
+            VideoList {
+                videos = watchedVideos
+                selectedVideo = currentVideo
+                onSelectVideo = { video ->
+                    currentVideo = video
                 }
             }
         }
+        div{
+            css {
+                position = Position.relative
+//                top = 10.px
+//                right = 10.px
+                display = Display.flex
+                alignItems = AlignItems.start
+                gap = 16.px
+            }
+            AudioPlayer{
+                audio = currentAudio
+            }
+            currentVideo?.let { curr ->
+                VideoPlayer {
+                    video = curr
+                    unwatchedVideo = curr in unwatchedVideos
+                    onWatchedButtonPressed = {
+                        if (video in unwatchedVideos) {
+                            unwatchedVideos = unwatchedVideos - video
+                            watchedVideos = watchedVideos + video
+                        } else {
+                            watchedVideos = watchedVideos - video
+                            unwatchedVideos = unwatchedVideos + video
+                        }
+                    }
+                }
+            }
 
+        }
     }
+
 
 }
