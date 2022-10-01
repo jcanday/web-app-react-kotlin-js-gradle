@@ -4,6 +4,7 @@ import emotion.react.css
 import react.dom.html.ReactHTML.button
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.h3
+import kotlinx.browser.window
 
 external interface VideoPlayerProps : Props {
     var video: Video
@@ -11,7 +12,13 @@ external interface VideoPlayerProps : Props {
     var unwatchedVideo: Boolean
 }
 
+
+
 val VideoPlayer = FC<VideoPlayerProps> { props ->
+
+    val (screenWidth, handleResize) = useState<Int>(window.outerWidth)
+    window.addEventListener("resize",{handleResize(window.outerWidth)})
+
     div {
         css {
             position = Position.relative
@@ -57,6 +64,7 @@ val VideoPlayer = FC<VideoPlayerProps> { props ->
         ReactPlayer {
             url = props.video.videoUrl
             controls = true
+            width = if (screenWidth <= 767) 90.vw else 40.vw
         }
 
     }

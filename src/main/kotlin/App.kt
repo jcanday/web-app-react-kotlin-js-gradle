@@ -40,41 +40,53 @@ val App = FC<Props> {
             unwatchedVideos = fetchVideos()
         }
     }
+
     window.addEventListener("resize",{handleResize(window.outerWidth)})
     Header()
 
     div {
         css{
             display = Display.flex
-            flexDirection = if (screenWidth <= 991) FlexDirection.column else FlexDirection.row
-            justifyContent = JustifyContent.spaceBetween
+            flexDirection = FlexDirection.columnReverse
             backgroundColor = Color("#FFFFFF50")
             backgroundBlendMode = BlendMode.overlay
             backgroundSize = BackgroundSize.cover
             backgroundImage = url("https://picsum.photos/1980/800")
+            alignItems = AlignItems.center
         }
 
         div {
-            h3 {
-                +"Videos to watch"
+            css{
+                display = Display.flex
+                flexDirection = if (screenWidth <= 767) FlexDirection.column else FlexDirection.row
+                justifyContent = JustifyContent.spaceAround
+                width = 90.vw
             }
-            VideoList {
-                videos = unwatchedVideos
-                selectedVideo = currentVideo
-                onSelectVideo = { video ->
-                    currentVideo = video
+            div{
+                h3 {
+                    +"Videos to watch"
+                }
+                VideoList {
+                    videos = unwatchedVideos
+                    selectedVideo = currentVideo
+                    onSelectVideo = { video ->
+                        currentVideo = video
+                    }
                 }
             }
-            h3 {
-                +"Videos watched"
-            }
-            VideoList {
-                videos = watchedVideos
-                selectedVideo = currentVideo
-                onSelectVideo = { video ->
-                    currentVideo = video
+            div {
+                h3 {
+                    +"Videos watched"
+                }
+                VideoList {
+                    videos = watchedVideos
+                    selectedVideo = currentVideo
+                    onSelectVideo = { video ->
+                        currentVideo = video
+                    }
                 }
             }
+
         }
         div{
             css {
