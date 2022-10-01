@@ -34,7 +34,7 @@ val App = FC<Props> {
     var currentVideo: Video? by useState(null)
     var unwatchedVideos: List<Video> by useState(emptyList())
     var watchedVideos: List<Video> by useState(emptyList())
-    val currentAudio = Audio("https://soundcloud.com/nba-youngboy/youngboy-never-broke-again-put?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing", "Youngboy NBA", "Put It On Me")
+    val currentAudio = Audio("https://soundcloud.com/producersnafu/producer-snafu-fall-back?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing", "Fallback", "Producer Snafu")
     useEffectOnce {
         mainScope.launch {
             unwatchedVideos = fetchVideos()
