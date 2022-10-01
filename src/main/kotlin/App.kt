@@ -9,6 +9,7 @@ import emotion.react.css
 import react.dom.html.ReactHTML.h3
 import react.dom.html.ReactHTML.div
 
+
 suspend fun fetchVideo(id: Int): Video {
     val response = window
         .fetch("https://my-json-server.typicode.com/kotlin-hands-on/kotlinconf-json/videos/$id")
@@ -34,20 +35,23 @@ val App = FC<Props> {
     var unwatchedVideos: List<Video> by useState(emptyList())
     var watchedVideos: List<Video> by useState(emptyList())
     val currentAudio = Audio("https://soundcloud.com/nba-youngboy/youngboy-never-broke-again-put?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing", "Youngboy NBA", "Put It On Me")
-
     useEffectOnce {
         mainScope.launch {
             unwatchedVideos = fetchVideos()
         }
     }
     window.addEventListener("resize",{handleResize(window.outerWidth)})
-
     Header()
+
     div {
         css{
             display = Display.flex
             flexDirection = if (screenWidth <= 991) FlexDirection.column else FlexDirection.row
             justifyContent = JustifyContent.spaceBetween
+            backgroundColor = Color("#FFFFFF50")
+            backgroundBlendMode = BlendMode.overlay
+            backgroundSize = BackgroundSize.cover
+            backgroundImage = url("https://picsum.photos/1980/800")
         }
 
         div {
